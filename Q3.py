@@ -88,3 +88,17 @@ used_cars_filterd[['odometer', 'predicted']].plot()
 
 
 
+
+meanSquaredError = 0
+
+# for all values that predicted and not predicted 
+for nonPredictedValue , predictedValue in zip(y, used_cars_filterd['predicted']):
+    
+    meanSquaredError = meanSquaredError + (nonPredictedValue - predictedValue)**2
+    
+# calcualted mean squared error 
+meanSquaredError = (1/ len(y))* meanSquaredError
+
+print("The mean squared Error is: ", meanSquaredError)
+
+
