@@ -75,14 +75,28 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,random_s
 # make the predictions.
 model = LogisticRegression(random_state=0)
 model.fit(X_train, y_train)
+print("x test is", len(X_test))
 predictions = model.predict(X_test)
+
 
 
 plt.plot(X, y, 'ro')
 #plt.plot(predictions,predictions)
 
-# print!!
-print(predictions)
+
+meanSquaredError = 0
+
+# for all values that predicted and not predicted 
+for nonPredictedValue , predictedValue in zip(y_test, predictions):
+    meanSquaredError = meanSquaredError + (nonPredictedValue - predictedValue)**2
+
+# calcualted mean squared error 
+meanSquaredError = (1/ len(predictions))* meanSquaredError
+
+print("The mean squared Error is: ", meanSquaredError)
+
+
+
 
 
 
